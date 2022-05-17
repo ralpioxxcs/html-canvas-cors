@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <h1>html canvas cors test page</h1>
+    <canvas id="canvas"></canvas>
+    <br />
+    <label><strong>base64 string :</strong></label>
+    <p id="imgData"></p>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const imgUrl = "http://localhost:1234/lenna.png";
+
+        let img = new Image();
+        img.onload = () => {
+            canvas.width = img.width;
+            canvas.height = img.width;
+            ctx.drawImage(img, 0, 0);
+
+            const elem = document.getElementById('imgData');
+            elem.innerText = canvas.toDataURL("image/png");
+        };
+        img.crossOrigin = 'anonymous';
+        img.src = imgUrl;
+
+    </script>
+</body>
+
+</html>
